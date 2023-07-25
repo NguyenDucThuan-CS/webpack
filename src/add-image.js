@@ -1,9 +1,9 @@
 import Kiwi from './kiwi.jpg'
-
+import altText from './text.txt'
 
 function addImage() {
     const img = document.createElement('img');
-    img.alt = 'kiwi';
+    img.alt = altText;
     img.width = 300;
     img.src = Kiwi;
 
