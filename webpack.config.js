@@ -1,15 +1,15 @@
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, './dist'),
-        publicPath: 'dist/'
+        path: path.resolve(__dirname, './dist'),            
     },
     mode: 'none',
     module: {
-        rules: [
+        rules: [    
             {
                 test: /\.(png|jpg)$/,
                 type: 'asset',
@@ -43,5 +43,8 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins: [
+        new TerserPlugin()
+    ]
 }
