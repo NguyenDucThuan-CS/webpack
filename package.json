@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
+    "handlebars-loader": "^1.7.3",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
     "sass": "^1.64.1",
@@ -46,6 +47,7 @@
     "function-bind": "^1.1.1",
     "glob-to-regexp": "^0.4.1",
     "graceful-fs": "^4.2.11",
+    "handlebars": "^4.7.8",
     "has": "^1.0.3",
     "has-flag": "^4.0.0",
     "import-local": "^3.1.0",
@@ -103,7 +105,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack --config webpack.production.config.js",
+    "dev": "webpack --config webpack.dev.config.js"
   },
   "keywords": [],
   "author": "",
