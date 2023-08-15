@@ -73,8 +73,6 @@ module.exports = {
         ]
     },
     plugins: [
-       
-       
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             filename: 'hello-world.html',
