@@ -1,57 +1,44 @@
 const path = require('path');
-
-
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
-    entry:{
-        'hello-world': './src/hello-world.js',
-        'kiwi': './src/kiwi.js'
-    },
+    entry: './src/index.js',
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: ''            
+        publicPath: ''
     },
     mode: 'development',
-
     devServer: {
         port: 9000,
         static: {
             directory: path.resolve(__dirname, './dist'),
-
         },
         devMiddleware: {
             index: 'index.html',
-            writeToDisk: true,
+            writeToDisk: true
         }
     },
-
-
     module: {
-        rules: [    
+        rules: [
             {
                 test: /\.(png|jpg)$/,
-                type: 'asset',
-                parser: {
-                    dataUrlCondition: {
-                        maxSize: 3 * 1024,
-                    }
-                }
+                use: [
+                    'file-loader'
+                ]
             },
             {
-                test: /\.txt/,
-                type: 'asset/source',
+                test: /\.css$/,
+                use: [
+                    'style-loader', 'css-loader'
+                ]
             },
             {
-                test: /\.css/,
-                use: ['style-loader', 'css-loader']
-            },
-            {
-                test: /\.scss/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
+                test: /\.scss$/,
+                use: [
+                    'style-loader', 'css-loader', 'sass-loader'
+                ]
             },
             {
                 test: /\.js$/,
@@ -59,15 +46,15 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/env'],
-                        plugins: ['@babel/plugin-proposal-class-properties']
+                        presets: [ '@babel/env' ],
+                        plugins: [ '@babel/plugin-proposal-class-properties' ]
                     }
                 }
             },
             {
                 test: /\.hbs$/,
                 use: [
-                    'handlebars-loader',
+                    'handlebars-loader'
                 ]
             }
         ]
@@ -75,18 +62,9 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            filename: 'hello-world.html',
-            chunks: ['hello-world'],
             title: 'Hello world',
-            template: 'src/page-template.hbs',
-            description: 'Hello world'
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'kiwi.html',
-            chunks: ['kiwi'],
-            title: 'kiwi',
-            template: 'src/page-template.hbs',
-            description: 'kiwi'
+            description: 'Hello world',
+            template: 'src/page-template.hbs'
         })
     ]
-}
+};

@@ -1,16 +1,13 @@
-//import helloWorld from "./hello-world";
-import HelloWorldButton from "./components/hello-world-button/hello-world-button";
-import Heading from "./components/heading/heading";
-
+import HelloWorldButton from './components/hello-world-button/hello-world-button.js';
+import Heading from './components/heading/heading.js';
 
 const heading = new Heading();
-
 heading.render();
+const helloWorldButton = new HelloWorldButton();
+helloWorldButton.render();
 
-
-const HelloWorldButtonBtn = new HelloWorldButton();
-HelloWorldButtonBtn.render(); 
-
-let ten = 10;
-
-
+if (process.env.NODE_ENV === 'production') {
+    console.log('Production mode');
+} else if (process.env.NODE_ENV === 'development') {
+    console.log('Development mode');
+}
