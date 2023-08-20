@@ -9,7 +9,7 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: 'http://localhost:9001'
+        publicPath: 'http://localhost:9001/'
     },
     mode: 'development',
     devServer: {
@@ -18,7 +18,7 @@ module.exports = {
             directory: path.resolve(__dirname, './dist'),
         },
         devMiddleware: {
-            index: 'index.html',
+            index: 'hello-world.html',
             writeToDisk: true
         }
     },

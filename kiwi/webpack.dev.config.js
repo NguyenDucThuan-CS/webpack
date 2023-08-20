@@ -56,7 +56,6 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-       
         new HtmlWebpackPlugin({
             filename: 'kiwi.html',
             title: 'Kiwi',
@@ -69,7 +68,5 @@ module.exports = {
                 HelloWorldApp: 'HelloWorldApp@http://localhost:9001/remoteEntry.js'
             }
         })
-
-
     ]  
 };
