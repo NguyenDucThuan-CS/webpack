@@ -1,9 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { ModuleFederationPlugin } =  require('webpack').container;
-
-
+const { ModuleFederationPlugin } = require('webpack').container;
 module.exports = {
     entry: './src/hello-world.js',
     output: {
@@ -57,15 +55,13 @@ module.exports = {
             description: 'Hello world',
             template: 'src/page-template.hbs'
         }),
-
         new ModuleFederationPlugin({
             name: 'HelloWorldApp',
             filename: 'remoteEntry.js',
             exposes: {
-                './HelloWorldButton':'./src/components/hello-world-button/hello-world-button.js',
-                './HelloWorldPage':'./src/components/hello-world-page/hello-world-page.js'
-            } 
+                './HelloWorldButton': './src/components/hello-world-button/hello-world-button.js',
+                './HelloWorldPage': './src/components/hello-world-page/hello-world-page.js'
+            }
         })
-       
     ]
 };

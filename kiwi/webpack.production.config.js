@@ -2,15 +2,14 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { ModuleFederationPlugin } =  require('webpack').container
-
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
     entry: './src/kiwi.js',
     output: {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: 'http://localhost:9002',
+        publicPath: 'http://localhost:9002/'
     },
     mode: 'production',
     optimization: {
@@ -24,9 +23,16 @@ module.exports = {
         rules: [
             {
                 test: /\.(png|jpg)$/,
-                use: [
-                    'file-loader'
-                ]
+                type: 'asset',
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 3 * 1024
+                    }
+                }
+            },
+            {
+                test: /\.txt/,
+                type: 'asset/source'
             },
             {
                 test: /\.scss$/,

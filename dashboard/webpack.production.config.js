@@ -2,15 +2,14 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { ModuleFederationPlugin } =  require('webpack').container
-
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
     entry: './src/dashboard.js',
     output: {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, './dist'),
-        publicPath: 'http://localhost:9000',
+        publicPath: 'http://localhost:9000/'
     },
     mode: 'production',
     optimization: {
@@ -22,7 +21,6 @@ module.exports = {
     },
     module: {
         rules: [
-           
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -43,14 +41,12 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'dashboard.html',
             title: 'Dashboard',
-          
         }),
         new ModuleFederationPlugin({
             name: 'App',
-           
             remotes: {
-                HelloWorldApp: 'HelloWordApp@http://9001/remoteEntry.js',
-                KiwiApp: 'KiwiApp@http://9002/remoteEntry.js',
+                HelloWorldApp: 'HelloWorldApp@http://localhost:9001/remoteEntry.js',
+                KiwiApp: 'KiwiApp@http://localhost:9002/remoteEntry.js'
             }
         })
     ]
